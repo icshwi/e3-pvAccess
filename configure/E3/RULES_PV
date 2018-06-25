@@ -1,7 +1,15 @@
+# I don't like to do this, but without changing driver.Makefile heavily,
+# it is only the way to do this. 
+# We have to move all pv/pva headers to its own include/{pv,pva} directories
+# 
 pv: pva
-	cd $(E3_MODULES_INSTALL_LOCATION_INC) && $(SUDO) ln -sn $(E3_MODULES_INSTALL_LOCATION_INC) pv
+	$(SUDO) install -m 755 -d $(E3_MODULES_INSTALL_LOCATION_INC)/pv
+	cd $(E3_MODULES_INSTALL_LOCATION_INC) && $(SUDO) mv *.h pv/
+
 
 pva:
-	cd $(E3_MODULES_INSTALL_LOCATION_INC) && $(SUDO) ln -sn $(E3_MODULES_INSTALL_LOCATION_INC) pva
+	$(SUDO) install -m 755 -d $(E3_MODULES_INSTALL_LOCATION_INC)/pva
+	cd $(E3_MODULES_INSTALL_LOCATION_INC) && $(SUDO) mv client.h pva/
+
 
 .PHONY: pv pva 
