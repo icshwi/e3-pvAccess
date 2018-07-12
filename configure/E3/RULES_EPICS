@@ -4,7 +4,7 @@
 .PHONY: epics epics-clean
 
 epics:	
-	$(QUIET)echo "EPICS_PVDATA=$(M_PVDATA)"        > $(TOP)/$(E3_MODULE_SRC_PATH)/configure/RELEASE.local	
+	$(QUIET)echo "PVDATA=$(M_PVDATA)"               > $(TOP)/$(E3_MODULE_SRC_PATH)/configure/RELEASE.local	
 	$(QUIET)echo "EPICS_BASE=$(EPICS_BASE)"        >> $(TOP)/$(E3_MODULE_SRC_PATH)/configure/RELEASE.local
 	$(QUIET)echo "CHECK_RELEASE = YES"              > $(TOP)/$(E3_MODULE_SRC_PATH)/configure/CONFIG_SITE.local
 	$(QUIET)echo "-include $(TOP)/$(E3_MODULE_SRC_PATH)/configure/CONFIG_PVACCESS_VERSION"  >> $(TOP)/$(E3_MODULE_SRC_PATH)/configure/CONFIG_SITE.local
