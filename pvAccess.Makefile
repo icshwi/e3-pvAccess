@@ -17,8 +17,8 @@
 #
 # Author  : Jeong Han Lee
 # email   : jeonghan.lee@gmail.com
-# Date    : Monday, June 25 00:58:17 CEST 2018
-# version : 0.0.1
+# Date    : Thursday, July 12 23:44:45 CEST 2018
+# version : 0.0.2
 
 where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
@@ -39,6 +39,7 @@ endif
 PVACCESS_SRC:=src
 
 
+
 PVA:=$(PVACCESS_SRC)/pva
 UTILS:=$(PVACCESS_SRC)/utils
 CLIENT:=$(PVACCESS_SRC)/client
@@ -51,6 +52,9 @@ RPCCLIENT:=$(PVACCESS_SRC)/rpcClient
 PIPELINESERVICE:=$(PVACCESS_SRC)/pipelineService
 MB:=$(PVACCESS_SRC)/mb
 
+IOC:=$(PVACCESS_SRC)/ioc
+CA:=$(PVACCESS_SRC)/ca
+
 USR_INCLUDES += -I$(COMMON_DIR)
 USR_INCLUDES += -I$(where_am_I)$(PVACCESS_SRC)
 USR_INCLUDES += -I$(where_am_I)$(CLIENT)
@@ -61,6 +65,32 @@ USR_INCLUDES += -I$(where_am_I)$(RPCSERVICE)
 USR_INCLUDES += -I$(where_am_I)$(REMOTE)
 USR_INCLUDES += -I$(where_am_I)$(MB)
 #USR_INCLUDES += -I$(where_am_I)$(SERVER)
+
+
+# pvAccessCA lib
+# CA
+USR_INCLUDES += -I$(where_am_I)$(CA)
+HEADERS += $(CA)/pv/caProvider.h
+HEADERS += $(CA)/pv/caStatus.h
+SOURCES += $(CA)/caProvider.cpp
+SOURCES += $(CA)/caChannel.cpp
+SOURCES += $(CA)/caStatus.cpp
+
+# More studies are needed for  IOC
+# pvAccessIOC lib
+# IOC
+
+HEADERS += $(IOC)/pv/syncChannelFind.h
+HEADERS += $(IOC)/pv/iocshelper.h
+HEADERS += $(IOC)/pv/iocreftrack.h
+
+SOURCES += $(IOC)/PVAServerRegister.cpp
+SOURCES += $(IOC)/PVAClientRegister.cpp
+SOURCES += $(IOC)/reftrackioc.cpp
+
+#DBDS += $(IOC)/PVACommonRegister.dbd
+DBDS += $(IOC)/PVAServerRegister.dbd
+DBDS += $(IOC)/PVAClientRegister.dbd
 
 # PVA
 
