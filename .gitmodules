@@ -1,4 +1,4 @@
 [submodule "pvAccessCPP"]
 	path = pvAccessCPP
 	url = https://github.com/epics-base/pvAccessCPP
-	ignore = all
+	ignore = dirty
